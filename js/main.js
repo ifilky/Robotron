@@ -1,6 +1,8 @@
 
-const controle = document.querySelectorAll("[data-controle]");
-const estatisticas = document.querySelectorAll("[data-estatistica]")
+const controle = document.querySelectorAll("[data-controle]"); //controladores
+const estatisticas = document.querySelectorAll("[data-estatistica]") // atributos
+const cores = document.querySelectorAll("[data-cor]") //buttons
+const robo = document.getElementById("robotron") //imagem do robô
 const pecas = {
     "bracos": {
         "forca": 29,
@@ -33,7 +35,14 @@ const pecas = {
         "energia": 0,
         "velocidade": -2
     }
-}
+} //objeto
+
+
+cores.forEach( (elemento) => {
+    elemento.addEventListener("click", (evento) => {
+        alteraCor(evento.target.dataset.cor);
+    })
+})
 
 controle.forEach( (elemento) => {
     elemento.addEventListener("click", (evento) => {
@@ -59,4 +68,8 @@ function atualizaEstatisticas(peca){
         console.log(pecas[peca][elemento.dataset.estatistica]) */
         elemento.textContent = parseInt(elemento.textContent) + pecas[peca][elemento.dataset.estatistica];
     } )
+}
+
+function alteraCor (cor){
+    robo.src="img/Robotron 2000 - " + cor + ".png";
 }
